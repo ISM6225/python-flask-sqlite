@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}
+List All Students
+{% endblock %}
+{% block content %}
+        <table border="1px">
+            <thead>
+                <td><strong>Student ID</strong></td>
+                <td><strong>Name</strong></td>
+                <td><strong>Address</strong></td>
+                <td><strong>City</strong></td>
+                <td><strong>Zip</strong></td>
+                <td></td>
+                <td></td>
+            </thead>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{ row["rowid"] }}</td>
+                <td>{{ row["name"] }}</td>
+                <td> {{ row["addr"]}}</td>
+                <td>{{ row["city"] }}</td>
+                <td>{{ row["zip"] }}</td>
+                <td><form action="{{url_for('edit')}}" method="POST"><input type="hidden" name="id" value="{{ row['rowid'] }}"><input type="submit" value="Edit"></form> </td>
+                <td><form onsubmit="return confirm('Are you sure you want to DELETE this Student from the Database?');" action="{{url_for('delete')}}" method="POST"><input type="hidden" name="id" value="{{ row['rowid'] }}"><input type="submit" value="Delete"></form> </td>
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

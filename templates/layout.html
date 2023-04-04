@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+            <a href="{{ url_for('enternew') }}" class="navbar-item">Add New Student</a>
+            <a href="{{ url_for('list') }}" class="navbar-item">Review and Edit Students</a>
+        </div>
+
+        <div class="body-content">
+            {% block content %}
+            {% endblock %}
+            <hr/>
+            <footer>
+                <p><img src="{{ url_for('static', filename='logo.png')}}" width="35" height="20">&copy; 2023</p>
+            </footer>
+        </div>
+    </body>
+</html>
